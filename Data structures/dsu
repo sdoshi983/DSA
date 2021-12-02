@@ -15,4 +15,17 @@ public:
             return v;
         return parent[v] = findParent(parent[v]);
     }
+    
+    void unionn(ll u, ll v){
+        u = findParent(u);
+        v = findParent(v);
+        if(rank[u] < rank[v])
+            parent[u] = v;
+        else if(rank[u] > rank[v])
+            parent[v] = u;
+        else{
+            parent[v] = u;
+            rank[u]++;  
+        }
+    }
 };
