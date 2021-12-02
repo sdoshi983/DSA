@@ -1,3 +1,5 @@
+// Disjoint Set Union
+
 template <typename T>
 
 class Dsu{
@@ -34,3 +36,12 @@ public:
         }
     }
 };
+
+/*
+Uses:
+
+- helps in knowing whether two nodes are of same connected component or different.
+- combines two disconnected components in a single connected component
+- Compress jumps along a segment / Painting subarrays:
+    - There is a set of vertices, and each vertex has an outgoing edge to another vertex. With DSU you can find the end point, to which we get after following all edges from a given starting point, in almost constant time.
+*/
