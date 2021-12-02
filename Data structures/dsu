@@ -10,4 +10,9 @@ public:
         }
     }
     
+    ll findParent(ll v){
+        if(v == parent[v])
+            return v;
+        return parent[v] = findParent(parent[v]);
+    }
 };
