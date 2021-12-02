@@ -1,32 +1,36 @@
+template <typename T>
+
 class Dsu{
 public:
-    vl parent = vl(2e5 + 5);
-    vl rank = vl(2e5 + 5);
-    
-    Dsu(){
-        fi(i, 0, 2e5 + 5){
+    vector<T> parent;
+    vector<T> rank;
+
+    Dsu(long long arraySize){   // arraySize = number of vertices in the graph
+        parent = vector<T>(arraySize);
+        rank = vector<T>(arraySize);
+
+        for(long long i = 0; i < arraySize; i++){
             parent[i] = i;  // initally, initialize all the vertices as their own parents
             rank[i] = 0;    // the rank of all the vertices will be 0 in the starting
         }
     }
-    
-    ll findParent(ll v){    // time complexity 4 * alpha where alpha is constant and negligible hence tc = O(1)
+
+    T findParent(T v){
         if(v == parent[v])
             return v;
         return parent[v] = findParent(parent[v]);   // path compression technique of dsu! eg 7 -> 4 -> 3 -> 1 .. hence for all the three nodes (7, 4, 3) their parent will be equal to 1
     }
-    
-    void unionn(ll u, ll v){    // time complexity = O(1)
+
+    void unionn(T u, T v){  // time complexity = O(1)
         u = findParent(u);
         v = findParent(v);
-        
         if(rank[u] < rank[v])
             parent[u] = v;
         else if(rank[u] > rank[v])
             parent[v] = u;
         else{
             parent[v] = u;
-            rank[u]++;  // from the three cases, when rank of both the vertices are same, then only increase the rank of the parent node      
+            rank[u]++;  // from the three cases, when rank of both the vertices are same, then only increase the rank of the parent node
         }
     }
 };
