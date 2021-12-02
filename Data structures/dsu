@@ -1,0 +1,7 @@
+class Dsu{
+public:
+    vl parent = vl(2e5 + 5);
+    vl rank = vl(2e5 + 5);
+
+    
+};
