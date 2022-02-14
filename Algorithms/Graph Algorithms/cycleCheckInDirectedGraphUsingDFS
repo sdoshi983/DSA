@@ -1,1 +1,20 @@
 // this is the code to check if there exists a cycle in a directed graph using depth first search
+
+// CODE:
+
+bool isCyclic(int node, vector<vector<int>>& graph, vector<int>& visited){
+    if(visited[node] == 2)
+        return true;
+        
+    visited[node] = 2;
+ 
+    for(auto vertex : graph[node]){
+        if(visited[vertex] != 1){
+            if(isCyclic(vertex, graph, visited))
+                return true;
+        }
+    }
+    
+    visited[node] = 1;
+    return false;
+}
