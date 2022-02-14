@@ -18,3 +18,12 @@ bool isCyclic(int node, vector<vector<int>>& graph, vector<int>& visited){
     visited[node] = 1;
     return false;
 }
+
+
+/*
+- Algorithm:
+ - visited[i] = 0 means the vertex is unvisited
+ - visited[i] = 1 means the vertex is processed
+ - visited[i] = 2 means the vertex is in processing in the current dfs call
+ 
+*/
