@@ -24,15 +24,20 @@ bool isCyclic(int node, vector<vector<int>>& graph, vector<int>& visited){
 - Technique Used: Graph Coloring. This values of visited array (i.e. 0, 1 and 2) indicates the color
 
 - Algorithm:
- - visited[i] = 0 means the vertex is unvisited
- - visited[i] = 1 means the vertex is processed
- - visited[i] = 2 means the vertex is in processing in the current dfs call
+    - visited[i] = 0 means the vertex is unvisited
+    - visited[i] = 1 means the vertex is processed
+    - visited[i] = 2 means the vertex is in processing in the current dfs call
  
- - on each recursive call, we check if visited[node] = 2 then there is a cycle because value 2 indicates that this node was visited before but in the same recursive stack
- - so after the loop for all graph[node] is over, we change the value of visited from 2 to 1. This indicatest that this vertex is fully processed.
- - hence we don't do the dfs call for the vertices with the visited[vertex] value equal to 1
+    - on each recursive call, we check if visited[node] = 2 then there is a cycle because value 2 indicates that this node was visited before but in the same recursive stack
+    - so after the loop for all graph[node] is over, we change the value of visited from 2 to 1. This indicatest that this vertex is fully processed.
+    - hence we don't do the dfs call for the vertices with the visited[vertex] value equal to 1
 
 - Complexity analysis:
- - Time complexity: O(V + E) where V is the number of vertices and E is the number of edges in the graph
- - Space complexity: O(V)
+    - Time complexity: O(V + E) where V is the number of vertices and E is the number of edges in the graph
+    - Space complexity: O(V)
+
+- Why to use this algorithm?
+    - There are various ways to find the cycle in the graph. 
+    - But the graph coloring technique is one of the best as it is just a simple dfs. It doesn't use extra space. Moerover, the time complexity of this algorithm is also same as dfs
+    - We don't even do any extra operations/iterations
 */
