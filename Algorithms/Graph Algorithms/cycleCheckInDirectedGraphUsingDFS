@@ -21,6 +21,8 @@ bool isCyclic(int node, vector<vector<int>>& graph, vector<int>& visited){
 
 
 /*
+- Technique Used: Graph Coloring. This values of visited array (i.e. 0, 1 and 2) indicates the color
+
 - Algorithm:
  - visited[i] = 0 means the vertex is unvisited
  - visited[i] = 1 means the vertex is processed
