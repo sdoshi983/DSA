@@ -26,4 +26,7 @@ bool isCyclic(int node, vector<vector<int>>& graph, vector<int>& visited){
  - visited[i] = 1 means the vertex is processed
  - visited[i] = 2 means the vertex is in processing in the current dfs call
  
+ - on each recursive call, we check if visited[node] = 2 then there is a cycle because value 2 indicates that this node was visited before but in the same recursive stack
+ - so after the loop for all graph[node] is over, we change the value of visited from 2 to 1. This indicatest that this vertex is fully processed.
+ - hence we don't do the dfs call for the vertices with the visited[vertex] value equal to 1
 */
