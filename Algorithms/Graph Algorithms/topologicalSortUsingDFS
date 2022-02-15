@@ -1,0 +1,15 @@
+// below is the code for topological sorting using depth first search
+
+// Code:
+
+vector<int> topSort;
+void dfs(int node, map<int, vector<int>>& edges, vector<int>& visited){
+    visited[node] = 1;
+    for(auto vertex : edges[node]){
+        if(visited[vertex] == 0){
+            dfs(vertex, edges, visited);
+        }
+    }
+    topSort.insert(topSort.begin(), node);
+}
+
