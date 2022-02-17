@@ -3,28 +3,28 @@
 // Code:
 
 vector<int> topoSort(int V, vector<int> adj[]) 
-	{
-	    vector<int> inDegree(V, 0);
-	    for(int counter = 0; counter < V; counter++){
-	        for(auto vertex : adj[counter])
-	            inDegree[vertex]++;
-	    }
-	    queue<int> q;
-	    for(int counter = 0; counter < V; counter++){
-	        if(!inDegree[counter])
-	            q.push(counter);
-	    }
-	    vector<int> topoOrder;
-	    while(!q.empty()){
-	        int node = q.front();
-	        q.pop();
-	        topoOrder.push_back(node);
-	        for(auto vertex : adj[node]){
-	            inDegree[vertex]--;
-	            if(inDegree[vertex] == 0)
-	                q.push(vertex);
-	        }
-	        
-	    }
-	    return topoOrder;
+{
+    vector<int> inDegree(V, 0);
+    for(int counter = 0; counter < V; counter++){
+	for(auto vertex : adj[counter])
+	    inDegree[vertex]++;
+    }
+    queue<int> q;
+    for(int counter = 0; counter < V; counter++){
+	if(!inDegree[counter])
+	    q.push(counter);
+    }
+    vector<int> topoOrder;
+    while(!q.empty()){
+	int node = q.front();
+	q.pop();
+	topoOrder.push_back(node);
+	for(auto vertex : adj[node]){
+	    inDegree[vertex]--;
+	    if(inDegree[vertex] == 0)
+		q.push(vertex);
 	}
+
+    }
+    return topoOrder;
+}
