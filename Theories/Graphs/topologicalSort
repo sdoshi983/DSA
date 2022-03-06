@@ -1,1 +1,4 @@
 - it is a sorting technique where for every directed edge from u -> v, u comes before v in the ordering
+
+Prerequisities:
+- The graph should be DAG (i.e. Directed Acyclic Graph)
