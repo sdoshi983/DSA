@@ -1,1 +1,33 @@
 // this is the code which checks that is the graph bipartite or not using bfs
+
+// Code:
+
+bool isBipartite(vector<vector<int>>& graph) {
+    int nodes = graph.size();
+    vector<int> coloring(nodes, -1);  
+    queue<int> q;
+    
+    for(int counter = 0; counter < nodes; counter++){
+        if(coloring[counter] != -1)
+            continue;
+        q.push(counter);
+        coloring[counter] = 0;
+        while(!q.empty()){
+            int front = q.front();
+            q.pop();
+            for(auto node : graph[front]){
+                if(coloring[node] == coloring[front])
+                    return false;
+                else if(coloring[node] == -1){
+                    if(coloring[front])
+                        coloring[node] = 0;
+                    else
+                        coloring[node] = 1;
+                    q.push(node);
+                }
+            }
+        }
+    }
+    return true;
+}
+
