@@ -7,18 +7,19 @@ bool isBipartite(vector<vector<int>>& graph) {
     vector<int> coloring(nodes, -1);  
     queue<int> q;
     
-    for(int counter = 0; counter < nodes; counter++){
-        if(coloring[counter] != -1)
+    for(int counter = 0; counter < nodes; counter++){   // we are looping in case the graph has more than one connected components
+        if(coloring[counter] != -1)     // If it has multiple connected components, then ignore the vertices that are already visited
             continue;
+            
         q.push(counter);
         coloring[counter] = 0;
         while(!q.empty()){
-            int front = q.front();
+            int front = q.front();      
             q.pop();
-            for(auto node : graph[front]){
-                if(coloring[node] == coloring[front])
+            for(auto node : graph[front]){      // NOTE: front vertex will be adjacent to all the 'node' vertices
+                if(coloring[node] == coloring[front])   // hence, if the color of the current node is same as its adjacent front vertex, then it is not a bipartite graph
                     return false;
-                else if(coloring[node] == -1){
+                else if(coloring[node] == -1){  // if the vertex is unvisited, then we color it with the color, excatly opposite to that of its neighbour (i.e. front vertex)
                     if(coloring[front])
                         coloring[node] = 0;
                     else
