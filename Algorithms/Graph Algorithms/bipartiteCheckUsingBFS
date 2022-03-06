@@ -17,7 +17,7 @@ bool isBipartite(vector<vector<int>>& graph) {
             int front = q.front();      
             q.pop();
             for(auto node : graph[front]){      // NOTE: front vertex will be adjacent to all the 'node' vertices
-                if(coloring[node] == coloring[front])   // hence, if the color of the current node is same as its adjacent front vertex, then it is not a bipartite graph
+                if(coloring[node] == coloring[front])   // hence, if the color of the current node is same as its adjacent (front) vertex, then it is not a bipartite graph
                     return false;
                 else if(coloring[node] == -1){  // if the vertex is unvisited, then we color it with the color, excatly opposite to that of its neighbour (i.e. front vertex)
                     if(coloring[front])
