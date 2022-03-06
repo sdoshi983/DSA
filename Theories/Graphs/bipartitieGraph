@@ -7,3 +7,6 @@
   - A graph is bipartite graph if all the vertices of this graph can be colored with excatly 2 colors such that no two adjacent vertices have same color
   - Here, two vertices are known as adjacent if they have a direct edge between them
   
+- Observation or Coding approach
+  - if the graph has an even length cycle, only then it can be a bipartite graph
+  - if the graph has an odd length cycle, it cannot be a bipartite graph
