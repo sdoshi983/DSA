@@ -31,3 +31,7 @@ bool isBipartite(vector<vector<int>>& graph) {
     return true;
 }
 
+/*
+- here, we take 0 and 1 as a values representing two different colors
+
+*/
