@@ -33,5 +33,8 @@ bool isBipartite(vector<vector<int>>& graph) {
 
 /*
 - here, we take 0 and 1 as a values representing two different colors
-
+- coloring[i] will be equal to:
+    -1 : indicates that the vertex is unvisited
+     0 : indicates that the vertex is visited and has a color 0
+     1 : indicates that the vertex is visited and has a color 1
 */
