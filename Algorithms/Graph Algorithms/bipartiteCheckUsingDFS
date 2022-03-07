@@ -1,2 +1,33 @@
 // this is the code which checks that is the graph bipartite or not using dfs
 
+// Code:
+
+bool dfs(int vertex, vector<vector<int>>& graph, vector<int>& coloring){
+	for(auto node : graph[vertex]){
+        if(coloring[node] == -1){
+            if(coloring[vertex])
+                coloring[node] = 0;
+            else
+                coloring[node] = 1;
+            if(!dfs(node, graph, coloring))
+                return false;
+        }else if(coloring[node] == coloring[vertex])
+            return false;
+    }
+    return true;
+}
+
+bool isBipartite(vector<vector<int>>& graph) {
+	int nodes = graph.size();
+  vector<int> coloring(nodes, -1);  
+
+  for(int counter = 0; counter < nodes; counter++){
+      if(coloring[counter] == -1){
+          coloring[counter] = 0;
+          if(!dfs(counter, graph, coloring))
+              return false;
+      }
+  }
+  return true;
+}
+
