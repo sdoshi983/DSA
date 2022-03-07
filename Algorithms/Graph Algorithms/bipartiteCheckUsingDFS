@@ -31,3 +31,8 @@ bool isBipartite(vector<vector<int>>& graph) {
   return true;
 }
 
+/*
+- the intuition/flow of this dfs technique is same as in bfs
+- hence for color scheme, refer points at the last in bfs file
+- bfs file: https://github.com/sdoshi983/DSA/blob/master/Algorithms/Graph%20Algorithms/bipartiteCheckUsingBFS
+*/
