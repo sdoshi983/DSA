@@ -1,0 +1,70 @@
+// this is the code which finds out all the strongly connected components in a graph
+
+// Code:
+
+class Solution
+{
+	public:
+	//Function to find number of strongly connected components in the graph.
+    int kosaraju(int V, vector<int> adj[])
+    {
+        stack<int> stack;
+        vector<bool> visited(V, false);
+        
+        for(int counter = 0; counter < V; counter++){     // first step
+            if(!visited[counter])
+                dfs(counter, stack, adj, visited, true);
+        }
+        
+        vector<int> transpose[V];
+        for(int counter = 0; counter < V; counter++){     // second step
+            visited[counter] = false;
+            for(auto node : adj[counter])
+                transpose[node].push_back(counter);
+        }
+        
+        int ans = 0;
+        while(!stack.empty()){                            // third step
+            int top = stack.top();
+            stack.pop();
+            if(!visited[top]){
+               ans++;                                     // this gives the total number of SCCs in a graph
+               dfs(top, stack, transpose, visited, false);
+               cout << endl;
+            }
+        }
+        return ans;
+    }
+    
+    void dfs(int vertex, stack<int>& stack, vector<int> adj[], vector<bool>& visited, bool fillStack){
+        visited[vertex] = true;
+        for(auto node : adj[vertex]){
+            if(!visited[node])
+                dfs(node, stack, adj, visited, fillStack);
+        }
+        if(fillStack)   // the dfs is called at the first stage
+            stack.push(vertex);
+        else            // the dfs is called for printing the SCCs
+            cout << vertex << " ";
+    }
+};
+
+
+/*
+- Strong connected component is a component in which if you start from any node, you can reach all the nodes in that component
+- This algo contains three steps:
+  1 - sort all the nodes in order of their finishing time and store them in a stack. This can be achieved using topological sorting.
+  2 - tranpose (reverse) the graph
+  3 - perform dfs on this transposed graph, according to the nodes in the stack.
+
+- Here we have a concept of sink and source vertex. Sink vertex is a vertex which doesn't connects to any other SCC. And source vertex is the vertex from which we
+  can visit all the SCCs.
+- Hence just for visualization, we can consider source vertex as a root (top) vertex. And sink vertex as a leaf (bottom) vertex.
+  
+INTUTION:
+- The finsihing time of the source vertex will always be greater than the finishing time of the sink vertex. It means, that in the stack, source vertex will come
+  after the sink vertex in the order. Hence, the source vertex will be the top of the stack, after performing the first operation.
+- Transposing the graph makes the source vertex a sink vertex and vice verse. So now, the sink vertex is at the top of the stack.
+- So now when we do the dfs on the tranposed graph, in order of the vertex in stack, we visit the vertexes from sink to source (which is all what we wanted).
+  
+*/
